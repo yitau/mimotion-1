@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, VM-16-15-opencloudos]
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v2
