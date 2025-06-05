@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: '39 2 * * *'
+    - cron: '40 2 * * *'
   watch:
     types: started
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: VM-16-15-opencloudos
    # if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
