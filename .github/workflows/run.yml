@@ -12,8 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: [VM-16-15-opencloudos]
-   # if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: [self-hosted, VM-16-15-opencloudos]
 
     steps:
       - uses: actions/checkout@v2
