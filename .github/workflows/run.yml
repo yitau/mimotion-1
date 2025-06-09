@@ -16,10 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      # - name: 初始化Python
-      #   # uses: actions/setup-python@v2
-      #   #   with:
-      #   #     python-version: 3.7
       - name: 开始
         run: |
           pip install requests
@@ -30,3 +26,13 @@ jobs:
           step='${{ secrets.STEP }}'
 
           python3 main.py ${pmode} ${pkey} ${user} ${pwd} ${step}
+
+      - name: Send Bark Notification
+        env:
+          BARK_SERVER_URL: ${{ secrets.BARK_SERVER_URL }}
+          BARK_KEY: ${{ secrets.BARK_KEY }}
+        run: |
+          URLS=$(echo "${{ steps.prepare_urls.outputs.urls }}" | tr ',' '\n')
+          TITLE="Xiao Mi Step Done"
+          # 构建完整 URL 并发送请求
+          curl -X GET "${BARK_SERVER_URL}/${BARK_KEY}/${TITLE}"
